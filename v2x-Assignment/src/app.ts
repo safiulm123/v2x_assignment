@@ -32,7 +32,8 @@ app.get('/unfiltered_data', (req, res) => {
 
 	docClient.scan(params, function(err, data) {
 		if (err) {
-			console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
+			//	console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
 		} else {
 			res.send(data);
 		}
@@ -51,7 +52,7 @@ app.get('/filtered_visible', (req, res) => {
 
 	docClient.scan(params, function(err, data) {
 		if (err) {
-			console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
 		} else {
 			res.send(data);
 		}
@@ -67,7 +68,7 @@ app.get('/filtered_specific_data', (req, res) => {
 
 	docClient.scan(params, function(err, data: any) {
 		if (err) {
-			console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
 		} else {
 			let UpdatedData = {
 				TotalOffers: data.Items.length,
@@ -89,7 +90,7 @@ app.get('/limit_filter', (req, res) => {
 	// Dont forget to change the movie
 	docClient.scan(params, function(err, data) {
 		if (err) {
-			console.error('Unable to Scan Data', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
 		} else {
 			res.send(data);
 		}
@@ -110,7 +111,7 @@ app.get('/detailedInfo_visible_ByID', (req, res) => {
 
 	docClient.query(params, function(err, data: any) {
 		if (err) {
-			console.error('Unable to query Data', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
 		} else {
 			if (data.Count === 0) {
 				res.status(400).send(`"visible" is false for the ID ${req.body.id} selected `);
@@ -136,7 +137,7 @@ app.get('/detailedInfo_without_teaser_ByID', (req, res) => {
 
 		docClient.query(params, async function(err, data: any) {
 			if (err) {
-				console.error('Unable to query Data', data, '. Error JSON:', JSON.stringify(err, null, 2));
+				res.status(400).send(err);
 			} else {
 				let data1 = data.Items[0];
 				delete data1.teaser;
@@ -169,7 +170,7 @@ app.get('/sorted_by_price', (req, res) => {
 
 	docClient.scan(params, function(err, data: any) {
 		if (err) {
-			console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
+			res.status(400).send(err);
 		} else {
 			let SortedData: [] = data.Items.sort(GetSortOrderbyPrice('pricing', 'price'));
 			res.send(SortedData);

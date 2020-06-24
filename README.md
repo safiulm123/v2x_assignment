@@ -105,7 +105,7 @@ There is one input that is required by the user and that is required to check if
 ### Response
  The response will be a 200OK with the following JSON keys
  - **200-OK** - Items with the detailed offer will be shared 
- -  **400- Bad Request** -  If the visible is set to false then it will notify that visible is set to false
+ -  **400-Bad Request** -  If the visible is set to false then it will notify that visible is set to false
 
 ## Requirement 7
 
