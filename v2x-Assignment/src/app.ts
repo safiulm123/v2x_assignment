@@ -178,6 +178,40 @@ app.get('/sorted_by_price', (req, res) => {
 	});
 });
 
+app.get('/filtered_requested_data', (req, res) => {
+	let tmpPortfolio;
+	if (req.body.portfolio === '' || req.body === null) {
+		tmpPortfolio = '0001';
+	} else {
+		tmpPortfolio = req.body.portfolio;
+	}
+	var params = {
+		TableName: 'Data',
+		FilterExpression: 'portfolio = :portfolio and pricing.price between :from and :to',
+		ExpressionAttributeValues: {
+			':portfolio': tmpPortfolio,
+			':from': req.body.pricing.from,
+			':to': req.body.pricing.to
+		}
+	};
+
+	docClient.scan(params, function(err, data: any) {
+		if (err) {
+			console.error('Unable to add movie', data, '. Error JSON:', JSON.stringify(err, null, 2));
+		} else {
+			let tmpArray: any = [];
+			data.Items.forEach((dataValue: any) => {
+				req.body.make.forEach((makeValue: any) => {
+					if (makeValue === dataValue.car.make) {
+						tmpArray.push(dataValue);
+					}
+				});
+			});
+			res.send(tmpArray);
+		}
+	});
+});
+
 app.listen(port, (err) => {
 	if (err) {
 		return console.error(err);
