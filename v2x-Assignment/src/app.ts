@@ -178,6 +178,7 @@ app.get('/sorted_by_price', (req, res) => {
 	});
 });
 
+// Question 2 --- Filtered by portfolio, make and price as given in the requirement
 app.get('/filtered_requested_data', (req, res) => {
 	let tmpPortfolio;
 	if (req.body.portfolio === '' || req.body === null) {
