@@ -6,7 +6,8 @@
 As a Web or App developer I want to request a (filtered) list of offers and for each offer some more detailed information so that I can process/display this information in the Web or App.
 
   # Procedure of Installation
-  Before running the containers, some prerequisites needs to be fulfilled.
+  There will be basically two containers running. 1 will be for Dynamo whereas the other one will be for RestAPI. Both will be build and started by one docker-compose file.
+  
   ## Prerequisites 
   Few things are required before running of the code. Those are 
   
