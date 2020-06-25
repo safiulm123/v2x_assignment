@@ -8,6 +8,31 @@ As a Web or App developer I want to request a (filtered) list of offers and for 
   # Procedure of Installation
   There will be basically two containers running. 1 will be for Dynamo whereas the other one will be for RestAPI. Both will be build and started by one docker-compose file.
   
+  ## Packages
+  		"devDependencies": {
+		"@types/aws-sdk": "^2.7.0",
+		"@types/chai": "^4.2.11",
+		"@types/express": "^4.17.6",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^14.0.13",
+		"@types/supertest": "^2.0.9",
+		"chai": "^4.2.0",
+		"mocha": "^8.0.1",
+		"supertest": "^4.0.2",
+		"ts-node": "^8.10.2",
+		"typescript": "^3.9.5"
+	},
+	"dependencies": {
+		"aws-sdk": "^2.702.0",
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1"
+	}
+
+  The dependencies packages are mostly for adding typescript tyeps. Chai Mocha and Supertest are all used for setting up unit Testing on APIs. The main dependencies that are used are 
+  - AWS-SDK which allows us to connect to the dynamo Database.
+  - Express allows us to create RestFul APIs
+  - Body-parser is used for accessing JSON keys in the Restful APIs
+  
   ## Prerequisites 
   Few things are required before running of the code. Those are 
   
